@@ -1,0 +1,49 @@
+# SO-101 Robot Description for Isaac Sim Lula / RMPflow Motion Planner
+api_version: 1.0
+
+# Generalized coordinates controlled by the motion planner (5-DOF arm)
+cspace:
+    - shoulder_pan
+    - shoulder_lift
+    - elbow_flex
+    - wrist_flex
+    - wrist_roll
+
+# Default Standby Home Pose (in Radians)
+# Equivalent to degrees: pan=0, lift=-35, elbow=45, wrist_flex=20, wrist_roll=0
+default_q: [
+    0.0,
+    -0.6108,
+    0.7854,
+    0.3491,
+    0.0
+]
+
+# Uncontrolled joints in cspace (e.g. Gripper finger)
+# The motion planner treats these as fixed or independently controlled.
+cspace_to_urdf_rules:
+    - {name: gripper, rule: fixed, value: 0.0}
+
+# Collision spheres for obstacle avoidance (Links & End-Effector)
+# Lula uses these spheres to ensure the robot never collides with obstacles or the table.
+collision_spheres:
+  - shoulder_link:
+    - "center": [0.0, 0.0, 0.0]
+      "radius": 0.04
+  - upper_arm_link:
+    - "center": [-0.05, 0.0, 0.0]
+      "radius": 0.035
+    - "center": [-0.10, 0.0, 0.0]
+      "radius": 0.035
+  - lower_arm_link:
+    - "center": [-0.06, 0.0, 0.0]
+      "radius": 0.03
+    - "center": [-0.12, 0.0, 0.0]
+      "radius": 0.03
+  - wrist_link:
+    - "center": [0.0, -0.03, 0.02]
+      "radius": 0.045
+  - gripper_link:
+    - "center": [0.0, 0.0, -0.05]
+      "radius": 0.035
+

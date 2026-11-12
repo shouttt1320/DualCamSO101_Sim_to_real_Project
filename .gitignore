@@ -1,0 +1,54 @@
+# ==============================================================================
+# SO-101 Sim-to-Real Project - Root .gitignore
+# ==============================================================================
+
+# 1. Large Datasets (HDF5, Zarr, etc.)
+Robot_Arm_Project/data/*
+!Robot_Arm_Project/data/.gitkeep
+dataset/*
+*.hdf5
+*.h5
+*.zarr
+
+# 2. Model Checkpoints & Pretrained Weights
+Robot_Arm_Project/ckpt/**/*.pth
+Robot_Arm_Project/ckpt/**/*.pt
+Robot_Arm_Project/ckpt/**/*.ckpt
+Robot_Arm_Project/ckpt/**/*.bin
+Robot_Arm_Project/ckpt/**/*.safetensors
+Robot_Arm_Project/ckpt/**/*.onnx
+Robot_Arm_Project/ckpt/**/*.pkl
+!Robot_Arm_Project/ckpt/**/.gitkeep
+!Robot_Arm_Project/ckpt/**/*.csv
+
+# 3. Execution Logs & Output Media (Log files kept locally, not committed)
+*.log
+logs/*
+Robot_Arm_Project/logs/*
+!Robot_Arm_Project/logs/.gitkeep
+train_output*.log
+*.mp4
+*.avi
+*.gif
+!docs/**/*.gif
+!docs/**/*.png
+
+# 4. Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+
+# 5. OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
