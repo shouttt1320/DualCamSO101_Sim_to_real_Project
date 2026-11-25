@@ -32,6 +32,7 @@ train_output*.log
 *.gif
 !docs/**/*.gif
 !docs/**/*.png
+step/assets/textures/*
 
 # 4. Python Bytecode & Cache
 __pycache__/
