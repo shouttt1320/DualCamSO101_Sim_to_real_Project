@@ -155,15 +155,27 @@ class MultiCameraCapture:
 
     def start(self):
         print("\n[카메라 연결 시작]")
+        used_ids = set()
         for name, dev_id in list(self.camera_dict.items()):
-            # 디바이스 경로가 없으면 자동 탐색 폴백
+            # 디바이스 경로가 없으면 자동 탐색 폴백 (단, 양안 카메라 중복 연결 방지)
             dev_path = f"/dev/video{dev_id}"
             if not os.path.exists(dev_path):
                 auto_top, auto_wrist = auto_detect_camera_indices()
-                fallback_id = auto_wrist if name == "wrist" else auto_top
+                name_l = name.lower()
+                if "left" in name_l or "right" in name_l:
+                    raise RuntimeError(
+                        f"[{name}] {dev_path} 가 존재하지 않습니다. 양안 카메라는 단일 카메라 폴백 시 좌우가 중복될 수 있으므로 디바이스 번호를 확인하세요."
+                    )
+                fallback_id = auto_wrist if "wrist" in name_l else auto_top
+                if fallback_id in used_ids or not os.path.exists(f"/dev/video{fallback_id}"):
+                    raise RuntimeError(
+                        f"[{name}] {dev_path} 없음 및 대체 디바이스(/dev/video{fallback_id}) 사용 불가"
+                    )
                 print(f"⚠️ [{name}] {dev_path} 없음 -> 자동 탐색된 /dev/video{fallback_id} 로 대체 연결합니다.")
                 dev_id = fallback_id
                 self.camera_dict[name] = dev_id
+
+            used_ids.add(dev_id)
 
             target_focus = self.focus_dict.get(name, 25)
             print(f" - [{name}] 카메라 초기화 중... (/dev/video{dev_id}, Focus 고정={self.disable_autofocus}, Focus값={target_focus})")

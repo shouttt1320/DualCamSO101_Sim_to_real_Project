@@ -1,0 +1,47 @@
+{
+  "wallpaper_diffuse": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/wallpaper_diff.jpg",
+  "wallpaper_normal": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/wallpaper_nor.png",
+  "molding_horiz": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/molding_wood_horiz.jpg",
+  "molding_vert": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/molding_wood_vert.jpg",
+  "table_ivory_diffuse": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/table_ivory_diff.jpg",
+  "table_ivory_normal": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/table_ivory_nor.png",
+  "table_ivory_median_rgb": [
+    223.0,
+    223.0,
+    223.0
+  ],
+  "blackbox_diffuse": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/blackbox_diff.jpg",
+  "blackbox_normal": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/blackbox_nor.png",
+  "real_red_faces": [
+    {
+      "diffuse": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_1_diff.jpg",
+      "normal": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_1_nor.png",
+      "source": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/realred1.jpg"
+    },
+    {
+      "diffuse": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_2_diff.jpg",
+      "normal": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_2_nor.png",
+      "source": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/realred2.jpg"
+    },
+    {
+      "diffuse": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_3_diff.jpg",
+      "normal": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_3_nor.png",
+      "source": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/realred3.jpg"
+    },
+    {
+      "diffuse": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_4_diff.jpg",
+      "normal": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_4_nor.png",
+      "source": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/realred4.jpg"
+    },
+    {
+      "diffuse": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_5_diff.jpg",
+      "normal": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_5_nor.png",
+      "source": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/realred5.jpg"
+    },
+    {
+      "diffuse": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_6_diff.jpg",
+      "normal": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/real_wall/realred_face_6_nor.png",
+      "source": "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/realred6.jpg"
+    }
+  ]
+}

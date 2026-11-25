@@ -1,0 +1,59 @@
+{
+  "white_desk_textures": [
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_abstract_rustic_surface_white_wood_table_texture_background_cl_abstract_rustic_surface_white_wood_table_texture_background_close_101432162.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_faded_beige_wooden_textured_flooring_background.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_istockphoto_1131684868_612x612.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_01.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_02.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_03.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_04.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_05.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_06.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_07.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_08.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_09.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_10.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_11.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_pattern_12.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_polystyrene_diff_1k.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_polystyrene_nor_1k.png",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_white_gray_color_wood_texture_surface.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_white_stucco_diff_1k.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_white_stucco_nor_1k.png",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/white_desk/white_desk_white_wood_textured_mobile_wallpaper.jpg"
+  ],
+  "general_tabletop_textures": [
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/tabletop/faded-beige-wooden-textured-flooring-background_1k.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/tabletop/istockphoto-1131684868-612x612_1k.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/tabletop/polystyrene_diff_1k.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/tabletop/polystyrene_nor_1k.png",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/tabletop/white-gray-color-wood-texture-surface_1k.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/tabletop/white-wood-textured-mobile-wallpaper_1k.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/tabletop/white_stucco_diff_1k.jpg",
+    "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/tabletop/white_stucco_nor_1k.png"
+  ],
+  "cube_materials": {
+    "diffuse_maps": [
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_diffuse_coral_red.png",
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_diffuse_crimson.png",
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_diffuse_pla_layers.png",
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_diffuse_pure_red.png",
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_diffuse_scarlet.png",
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_diffuse_user_red_cube_texture1.png",
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_diffuse_user_red_cube_texture2.png",
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_diffuse_user_red_cube_texture3.png",
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_diffuse_user_red_cube_texture4.png"
+    ],
+    "normal_maps": [
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_normal_pla_layers.png"
+    ],
+    "roughness_maps": [
+      "/home/jw/Documents/PersonalProjects/RobotArm_SimtoReal/assets/textures/processed/cube/cube_roughness_plastic.png"
+    ]
+  },
+  "stats": {
+    "num_white_desks": 21,
+    "num_general_tabletops": 8,
+    "num_cube_variants": 9
+  }
+}

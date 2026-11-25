@@ -198,7 +198,7 @@ class Transformer(nn.Module):
             additional_features = torch.stack([latent_input, proprio_input], axis=0)
             src = torch.cat([additional_features, src], axis=0)
 
-        memory = self.encoder(src, mask=mask, pos=pos_embed)
+        memory = self.encoder(src, src_key_padding_mask=mask, pos=pos_embed)
         tgt = torch.zeros_like(query_embed)
         hs = self.decoder(tgt, memory, memory_key_padding_mask=mask,
                           pos=pos_embed, query_pos=query_embed)

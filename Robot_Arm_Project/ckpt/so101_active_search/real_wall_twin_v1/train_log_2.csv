@@ -1,0 +1,1 @@
+epoch,train_loss,train_l1,train_kl,val_loss,val_l1,val_kl,val_search,val_grasp,val_transport,val_place,val_pan,val_lift,val_elbow,val_wrist_flex,val_wrist_roll,val_gripper,time_s

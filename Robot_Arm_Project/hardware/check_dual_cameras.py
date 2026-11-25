@@ -402,8 +402,8 @@ def run_dual_eyes_checker(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="양안(Dual Eyes) 카메라 시점 및 초점 고정(Auto Focus Lock) 점검 도구")
-    parser.add_argument("--left_id", type=int, default=4, help="왼쪽 카메라 /dev/video 번호 (기본값: 4)")
-    parser.add_argument("--right_id", type=int, default=6, help="오른쪽 카메라 /dev/video 번호 (기본값: 6)")
+    parser.add_argument("--left_id", type=int, default=2, help="왼쪽 카메라 /dev/video 번호 (기본값: 2)")
+    parser.add_argument("--right_id", type=int, default=0, help="오른쪽 카메라 /dev/video 번호 (기본값: 0)")
     parser.add_argument("--width", type=int, default=640, help="카메라 가로 해상도 (기본값: 640)")
     parser.add_argument("--height", type=int, default=480, help="카메라 세로 해상도 (기본값: 480)")
     parser.add_argument("--fps", type=int, default=30, help="카메라 FPS (기본값: 30)")

@@ -1,6 +1,6 @@
 # SO-101 Sim-to-Real: 5-DOF 양안 비전 기반 로봇 암 자율 조작 (DINOv2-ACT)
 
-[![Isaac Sim 4.2+](https://img.shields.io/badge/NVIDIA-Isaac%20Sim%204.2%2B-76B900?logo=nvidia&logoColor=white)](https://developer.nvidia.com/isaac-sim)
+[![Isaac Sim 6.2+](https://img.shields.io/badge/NVIDIA-Isaac%20Sim%206.2%2B-76B900?logo=nvidia&logoColor=white)](https://developer.nvidia.com/isaac-sim)
 [![PyTorch 2.1+](https://img.shields.io/badge/PyTorch-2.1.1%20%7C%20CUDA%2012.8-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![DINOv2 ViT-S/14](https://img.shields.io/badge/Backbone-DINOv2%20ViT--S%2F14-0081FB)](https://github.com/facebookresearch/dinov2)
 [![ACT Architecture](https://img.shields.io/badge/Policy-Action%20Chunking%20(ACT)-orange)](https://tonyzhaozh.github.io/aloha/)
@@ -11,7 +11,7 @@ NVIDIA Isaac Sim 물리 시뮬레이션 환경에서 Onshape 3D CAD 모델 기�
 
 ## 📌 주요 특징 (Key Highlights)
 
-- **CAD-to-USD 디지털 트윈 파이프라인**: Onshape 3D 설계 모델로부터 URDF를 변환하고, Isaac Sim 4.2+의 USD 물리 스테이지(`dual_cam_so101_redcube.usd`)에 정밀 관절 한계, 마찰 계수 및 충돌체를 완벽 동기화.
+- **CAD-to-USD 디지털 트윈 파이프라인**: Onshape 3D 설계 모델로부터 URDF를 변환하고, Isaac Sim 6.2+의 USD 물리 스테이지(`dual_cam_so101_redcube.usd`)에 정밀 관절 한계, 마찰 계수 및 충돌체를 완벽 동기화.
 - **손목 양안 스테레오 비전 (Wrist Dual Eyes)**: 손목 롤 링크에 36mm 베이스라인의 초소형 스테레오 카메라(`cam_left`, `cam_right`)를 장착하여 작업 공간(Workspace) 깊이감과 공간 위치 인식 극대화.
 - **기하학적 오차 보정 Lula IK 엔진**: 그리퍼 조(Jaw) 편심 오프셋(+1.8cm), URDF 관절 부호 매핑, 바닥 끼임 방지 접근고(Z=2.1cm) 및 1mm 접촉 마진을 적용하여 100% 신뢰도의 데모 데이터 생성.
 - **Dual DINOv2 + CVAE ACT 아키텍처**: 사전학습된 DINOv2(ViT-S/14) 비전 백본으로 양안 특징맵을 추출하고, CVAE 기반 Transformer 인코더/디코더를 통해 미래 100스텝 관절 궤적(Action Chunking)을 동시 예측.
@@ -24,7 +24,7 @@ NVIDIA Isaac Sim 물리 시뮬레이션 환경에서 Onshape 3D CAD 모델 기�
 
 ```mermaid
 flowchart LR
-    subgraph IsaacSim ["Isaac Sim 4.2+ Simulation"]
+    subgraph IsaacSim ["Isaac Sim 6.2+ Simulation"]
         Env["Scene USD (Table, Cube, Box)"] --> LeftCam["Left Camera (cam_left)"]
         Env --> RightCam["Right Camera (cam_right)"]
         Env --> RobotState["6-DOF Joint Angles (qpos)"]

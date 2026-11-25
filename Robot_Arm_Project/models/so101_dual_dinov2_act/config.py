@@ -24,12 +24,13 @@ FIXED_FOCUS_VALUE = 25    # 작업대 픽앤플레이스 거리에 최적화된 
 CONTROL_FPS = 30  # 30Hz
 
 # 2. 이미지 전처리 및 해상도 (DINOv2 패치 크기 14의 배수)
-# 640x320(2:1 비율)에 최적화된 14배수: 182(=14x13) x 364(=14x26), 2:1 비율 완전 보존 및 12GB VRAM 안정 구동
-IMAGE_SIZE = (182, 364)  # (Height, Width)
+# 640x480(4:3 실물 카메라 비율)에 최적화된 14배수: 210(=14x15) x 280(=14x20), 4:3 비율 완전 보존 및 12GB VRAM 안정 구동
+IMAGE_SIZE = (210, 280)  # (Height, Width)
 
 # 3. DINOv2 백본 및 ACT 모델 하이퍼파라미터
-BACKBONE = "dinov2_vits14"     # "dinov2_vits14", "dinov2_vitb14"
-TRAIN_BACKBONE = False         # DINOv2 사전학습 가중치 고정(Freeze) 여부
+BACKBONE = "dinov2_vits14_reg" # "dinov2_vits14", "dinov2_vits14_reg", "dinov2_vitb14"
+TRAIN_BACKBONE = False         # DINOv2 사전학습 가중치 전체 해제 여부
+UNFREEZE_BACKBONE_BLOCKS = 0   # 0보다 크면 DINOv2 마지막 N개 블록(+norm)만 부분 미세조정 (예: 2)
 CHUNK_SIZE = 100               # 미래 액션 예측 청크 크기 (50Hz 기준 2.0초 분량)
 HIDDEN_DIM = 512               # 트랜스포머 임베딩 차원
 DIM_FEEDFORWARD = 3200         # 피드포워드 레이어 차원
@@ -40,9 +41,10 @@ LATENT_DIM = 32                # CVAE 잠재 변수 z 차원
 KL_WEIGHT = 0.1                # CVAE KL 발산 손실 가중치
 
 # 4. 강인한 비전 정책 학습을 위한 정규화 및 증강 설정
-STEPS_PER_EPISODE_PER_EPOCH = 50  # 에포크당 에피소드별 샘플링 수 (29 x 50 = 1,450 샘플/에포크)
+STEPS_PER_EPISODE_PER_EPOCH = 80  # 에포크당 에피소드별 샘플링 수 (No-Cube 데모 추가 시에도 Grasp 학습량 유지)
 QPOS_NOISE_STD = 0.02             # 관절 입력 가우시안 노이즈 표준편차 (rad, 약 1.15도)
-QPOS_DROPOUT_PROB = 0.20          # 관절 입력 드롭아웃 확률 (20% 확률로 qpos를 0으로 마스킹하여 순수 비전 의존)
+QPOS_DROPOUT_PROB = 0.05          # 관절 입력 드롭아웃 확률 (5% 확률로 qpos 마스킹: 상태 전이 안정성 유지 + 약한 비전 정규화)
+PATCH_DROPOUT_PROB = 0.15         # 기법 C: 빨간 물체 보호 후 비보호 배경 패치 토큰 드롭아웃 비율
 WEIGHTED_SAMPLING = True          # 초기 관측(t=0~40) 및 파지(t=120~240) 가중 샘플링 활성화
 START_WEIGHT_MULTIPLIER = 5.0     # 초기 관측 구간(t=0~40) 가중치 배수
 GRASP_WEIGHT_MULTIPLIER = 3.0     # 파지 구간(t=120~240) 가중치 배수

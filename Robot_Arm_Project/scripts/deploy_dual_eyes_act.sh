@@ -21,8 +21,8 @@ for arg in "$@"; do
 done
 
 # 기본값
-LEFT_CAM=4
-RIGHT_CAM=6
+LEFT_CAM=2
+RIGHT_CAM=0
 FOCUS_VAL=25
 MAX_STEPS=600
 

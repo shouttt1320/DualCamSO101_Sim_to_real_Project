@@ -9,10 +9,12 @@ from .position_encoding import build_position_encoding
 class DINOv2Backbone(nn.Module):
     """DINOv2 ViT 패치 토큰을 2D Feature Map으로 변환하는 백본."""
 
-    def __init__(self, name: str = "dinov2_vits14", train_backbone: bool = False):
+    def __init__(self, name: str = "dinov2_vits14", train_backbone: bool = False, unfreeze_blocks: int = 0):
         super().__init__()
         self.name = name
         self.train_backbone = train_backbone
+        self.unfreeze_blocks = int(max(0, unfreeze_blocks))
+        self.is_trainable = bool(self.train_backbone or self.unfreeze_blocks > 0)
         self.patch_size = 14
 
         # PyTorch Hub를 통해 공식 사전학습 DINOv2 로드
@@ -21,15 +23,34 @@ class DINOv2Backbone(nn.Module):
         # 모델별 채널 수 파악 (vits14: 384, vitb14: 768, vitl14: 1024)
         self.num_channels = self.dinov2.embed_dim
 
-        # 백본 파라미터 고정(Freeze) 여부 설정
+        # 전체 고정 후 전체 해제(train_backbone) 또는 마지막 N개 블록만 부분 해제(unfreeze_blocks)
         for param in self.dinov2.parameters():
-            param.requires_grad = train_backbone
+            param.requires_grad = False
+
+        if self.train_backbone:
+            for param in self.dinov2.parameters():
+                param.requires_grad = True
+        elif self.unfreeze_blocks > 0:
+            n_blocks = len(self.dinov2.blocks)
+            k = min(self.unfreeze_blocks, n_blocks)
+            for block in self.dinov2.blocks[-k:]:
+                for param in block.parameters():
+                    param.requires_grad = True
+            if hasattr(self.dinov2, "norm"):
+                for param in self.dinov2.norm.parameters():
+                    param.requires_grad = True
 
     def train(self, mode: bool = True):
         super().train(mode)
-        # train_backbone이 False인 경우, eval 모드로 고정 (BatchNorm/Dropout 등 불변)
-        if not self.train_backbone:
+        if not self.is_trainable:
             self.dinov2.eval()
+        elif not self.train_backbone and self.unfreeze_blocks > 0:
+            self.dinov2.eval()
+            k = min(self.unfreeze_blocks, len(self.dinov2.blocks))
+            for block in self.dinov2.blocks[-k:]:
+                block.train(mode)
+            if hasattr(self.dinov2, "norm"):
+                self.dinov2.norm.train(mode)
         return self
 
     def forward(self, tensor: torch.Tensor):
@@ -44,7 +65,7 @@ class DINOv2Backbone(nn.Module):
         patch_h = H // self.patch_size
         patch_w = W // self.patch_size
 
-        if not self.train_backbone:
+        if not self.is_trainable:
             with torch.no_grad():
                 features = self.dinov2.forward_features(tensor)
                 patch_tokens = features["x_norm_patchtokens"]
@@ -73,10 +94,15 @@ class Joiner(nn.Sequential):
         return out, pos
 
 
-def build_backbone(backbone_name: str = "dinov2_vits14", hidden_dim: int = 512, train_backbone: bool = False) -> Joiner:
+def build_backbone(
+    backbone_name: str = "dinov2_vits14",
+    hidden_dim: int = 512,
+    train_backbone: bool = False,
+    unfreeze_blocks: int = 0,
+) -> Joiner:
     """DINOv2 백본 및 2D 위치 임베딩 생성기"""
     position_embedding = build_position_encoding(hidden_dim)
-    backbone = DINOv2Backbone(name=backbone_name, train_backbone=train_backbone)
+    backbone = DINOv2Backbone(name=backbone_name, train_backbone=train_backbone, unfreeze_blocks=unfreeze_blocks)
     model = Joiner(backbone, position_embedding)
     model.num_channels = backbone.num_channels
     return model

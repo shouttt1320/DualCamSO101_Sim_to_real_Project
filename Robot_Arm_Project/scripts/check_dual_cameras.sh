@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # 양안 카메라 실시간 시점 및 초점 고정(Auto Focus Lock) 점검 스크립트
-# 기본값: left=4, right=6, focus=25 (오토포커스 비활성화 고정)
+# 기본값: left=2, right=0, focus=25 (오토포커스 비활성화 고정)
 
-LEFT_ID=${1:-4}
-RIGHT_ID=${2:-6}
+LEFT_ID=${1:-2}
+RIGHT_ID=${2:-0}
 FOCUS_VAL=${3:-25}
 
 echo "=== 양안(Dual Eyes) 카메라 시점 및 초점(Focus Lock) 점검 실행 ==="

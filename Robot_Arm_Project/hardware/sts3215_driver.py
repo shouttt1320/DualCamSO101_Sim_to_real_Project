@@ -24,6 +24,7 @@ class STS3215Driver:
     ADDR_ACC = 41
     ADDR_GOAL_POSITION = 42
     ADDR_GOAL_SPEED = 46
+    ADDR_TORQUE_LIMIT = 48
     ADDR_LOCK = 55
     ADDR_PRESENT_POSITION = 56
     ADDR_PRESENT_SPEED = 58
@@ -150,6 +151,19 @@ class STS3215Driver:
             return False
         self.ser.flushInput()
         ok = self._send_packet(servo_id, self.INST_WRITE, [self.ADDR_TORQUE_ENABLE, val])
+        self.ser.flush()
+        return ok
+
+    def set_torque_limit(self, servo_id: int, limit_ratio: float) -> bool:
+        """서보 모터 최대 출력 토크 비율 제한 (0.0 ~ 1.0 -> 0 ~ 1000)"""
+        if not self.ser or not self.ser.is_open:
+            return False
+        ratio = max(0.0, min(1.0, float(limit_ratio)))
+        limit_val = int(round(ratio * 1000.0))
+        lim_l = limit_val & 0xFF
+        lim_h = (limit_val >> 8) & 0xFF
+        self.ser.flushInput()
+        ok = self._send_packet(servo_id, self.INST_WRITE, [self.ADDR_TORQUE_LIMIT, lim_l, lim_h])
         self.ser.flush()
         return ok
 

@@ -73,6 +73,10 @@ class DETRVAE(nn.Module):
         self.backbone = backbone
         self.input_proj_robot_state = nn.Linear(state_dim, hidden_dim)
 
+        # 보조 헤드: 15x20 패치별 큐브 위치 히트맵 + MaxPool 큐브 보임 확률 (input_proj 직후 분기)
+        self.cube_heatmap_head = nn.Conv2d(hidden_dim, 1, kernel_size=1)
+        self.last_aux = None
+
         # CVAE 인코더 파라미터
         self.cls_embed = nn.Embedding(1, hidden_dim)
         self.encoder_action_proj = nn.Linear(state_dim, hidden_dim)
@@ -84,12 +88,13 @@ class DETRVAE(nn.Module):
         self.latent_out_proj = nn.Linear(latent_dim, hidden_dim)
         self.additional_pos_embed = nn.Embedding(2, hidden_dim)
 
-    def forward(self, qpos, image, actions=None, is_pad=None):
+    def forward(self, qpos, image, actions=None, is_pad=None, patch_mask=None):
         """
         qpos: (bs, 6)
         image: (bs, num_cam, 3, H, W)
         actions: (bs, chunk_size, 6) - 학습 시에만 제공
         is_pad: (bs, chunk_size) - 마스크
+        patch_mask: (bs, num_cam, H_p, W_p) bool - True인 배경 패치 토큰 마스킹 (학습 전용)
         """
         is_training = actions is not None
         bs = qpos.shape[0]
@@ -124,20 +129,40 @@ class DETRVAE(nn.Module):
         # 위치 임베딩도 함께 너비 축으로 이어붙여 트랜스포머 시퀀스 상에서 카메라별 위치가 명확히 구분됨
         all_cam_features = []
         all_cam_pos = []
+        all_cam_heatmaps = []
         for cam_id in range(len(self.camera_names)):
             features, pos = self.backbone(image[:, cam_id])
             features = features[0]
             pos = pos[0]
-            all_cam_features.append(self.input_proj(features))
+            proj_feat = self.input_proj(features)
+            all_cam_features.append(proj_feat)
             all_cam_pos.append(pos)
+            # (bs, 1, H_p, W_p) -> (bs, H_p, W_p)
+            all_cam_heatmaps.append(self.cube_heatmap_head(proj_feat).squeeze(1))
+
+        # 보조 출력: (bs, num_cam, H_p, W_p) 히트맵 로짓 & 전체 패치 MaxPool 보임 로짓 (bs,)
+        heatmap_logits = torch.stack(all_cam_heatmaps, dim=1)
+        vis_logit = heatmap_logits.flatten(1).max(dim=1).values
+        self.last_aux = {
+            "heatmap_logits": heatmap_logits,
+            "vis_logit": vis_logit,
+        }
 
         src = torch.cat(all_cam_features, axis=3)
         pos = torch.cat(all_cam_pos, axis=3)
         proprio_input = self.input_proj_robot_state(qpos)
 
+        transformer_mask = None
+        if self.training and patch_mask is not None:
+            # patch_mask: (bs, num_cam, H_p, W_p) -> width 축 결합 후 [latent(F), proprio(F), patches...]
+            cat_mask = torch.cat([patch_mask[:, c] for c in range(patch_mask.shape[1])], dim=2)
+            flat_patch_mask = cat_mask.flatten(1).to(dtype=torch.bool, device=qpos.device)
+            prefix_mask = torch.zeros((bs, 2), dtype=torch.bool, device=qpos.device)
+            transformer_mask = torch.cat([prefix_mask, flat_patch_mask], dim=1)
+
         # 3. DETR 트랜스포머 디코더 (미래 액션 청크 일괄 예측)
         hs = self.transformer(
-            src, None, self.query_embed.weight, pos,
+            src, transformer_mask, self.query_embed.weight, pos,
             latent_input, proprio_input, self.additional_pos_embed.weight
         )[0]
 
@@ -170,10 +195,16 @@ def build_act_model(
     nheads: int = 8,
     latent_dim: int = 32,
     train_backbone: bool = False,
+    unfreeze_blocks: int = 0,
 ) -> DETRVAE:
     """양안 카메라 DINOv2 ACT 모델 인스턴스 생성"""
     camera_names = camera_names or ["cam_left", "cam_right"]
-    backbone = build_backbone(backbone_name=backbone_name, hidden_dim=hidden_dim, train_backbone=train_backbone)
+    backbone = build_backbone(
+        backbone_name=backbone_name,
+        hidden_dim=hidden_dim,
+        train_backbone=train_backbone,
+        unfreeze_blocks=unfreeze_blocks,
+    )
     transformer = build_transformer(
         hidden_dim=hidden_dim,
         nheads=nheads,

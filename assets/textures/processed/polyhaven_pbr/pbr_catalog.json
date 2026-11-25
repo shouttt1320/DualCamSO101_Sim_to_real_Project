@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "ash_veneer",
+    "diffuse": "assets/textures/processed/polyhaven_pbr/ash_veneer/diffuse.jpg",
+    "nor_gl": "assets/textures/processed/polyhaven_pbr/ash_veneer/normal.jpg",
+    "rough": "assets/textures/processed/polyhaven_pbr/ash_veneer/rough.jpg"
+  },
+  {
+    "slug": "american_walnut_veneer",
+    "diffuse": "assets/textures/processed/polyhaven_pbr/american_walnut_veneer/diffuse.jpg",
+    "nor_gl": "assets/textures/processed/polyhaven_pbr/american_walnut_veneer/normal.jpg",
+    "rough": "assets/textures/processed/polyhaven_pbr/american_walnut_veneer/rough.jpg"
+  },
+  {
+    "slug": "bamboo_veneer",
+    "diffuse": "assets/textures/processed/polyhaven_pbr/bamboo_veneer/diffuse.jpg",
+    "nor_gl": "assets/textures/processed/polyhaven_pbr/bamboo_veneer/normal.jpg",
+    "rough": "assets/textures/processed/polyhaven_pbr/bamboo_veneer/rough.jpg"
+  },
+  {
+    "slug": "beige_wall_001",
+    "diffuse": "assets/textures/processed/polyhaven_pbr/beige_wall_001/diffuse.jpg",
+    "nor_gl": "assets/textures/processed/polyhaven_pbr/beige_wall_001/normal.jpg",
+    "rough": "assets/textures/processed/polyhaven_pbr/beige_wall_001/rough.jpg"
+  },
+  {
+    "slug": "beige_wall_002",
+    "diffuse": "assets/textures/processed/polyhaven_pbr/beige_wall_002/diffuse.jpg",
+    "nor_gl": "assets/textures/processed/polyhaven_pbr/beige_wall_002/normal.jpg",
+    "rough": "assets/textures/processed/polyhaven_pbr/beige_wall_002/rough.jpg"
+  },
+  {
+    "slug": "concrete_floor_painted",
+    "diffuse": "assets/textures/processed/polyhaven_pbr/concrete_floor_painted/diffuse.jpg",
+    "nor_gl": "assets/textures/processed/polyhaven_pbr/concrete_floor_painted/normal.jpg",
+    "rough": "assets/textures/processed/polyhaven_pbr/concrete_floor_painted/rough.jpg"
+  },
+  {
+    "slug": "brushed_concrete",
+    "diffuse": "assets/textures/processed/polyhaven_pbr/brushed_concrete/diffuse.jpg",
+    "nor_gl": "assets/textures/processed/polyhaven_pbr/brushed_concrete/normal.jpg",
+    "rough": "assets/textures/processed/polyhaven_pbr/brushed_concrete/rough.jpg"
+  },
+  {
+    "slug": "brown_leather",
+    "diffuse": "assets/textures/processed/polyhaven_pbr/brown_leather/diffuse.jpg",
+    "nor_gl": "assets/textures/processed/polyhaven_pbr/brown_leather/normal.jpg",
+    "rough": "assets/textures/processed/polyhaven_pbr/brown_leather/rough.jpg"
+  },
+  {
+    "slug": "cotton_jersey",
+    "diffuse": "assets/textures/processed/polyhaven_pbr/cotton_jersey/diffuse.jpg",
+    "nor_gl": "assets/textures/processed/polyhaven_pbr/cotton_jersey/normal.jpg",
+    "rough": "assets/textures/processed/polyhaven_pbr/cotton_jersey/rough.jpg"
+  },
+  {
+    "slug": "blue_plaster_weathered",
+    "diffuse": "assets/textures/processed/polyhaven_pbr/blue_plaster_weathered/diffuse.jpg",
+    "nor_gl": "assets/textures/processed/polyhaven_pbr/blue_plaster_weathered/normal.jpg",
+    "rough": "assets/textures/processed/polyhaven_pbr/blue_plaster_weathered/rough.jpg"
+  }
+]
